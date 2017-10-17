@@ -17,8 +17,6 @@
 
     <modules>
         <module>clientmanagementservices</module>
-        <module>clientmanagementmodels</module>
-        <module>clientmanagementutils</module>
     </modules>
 
 </project>

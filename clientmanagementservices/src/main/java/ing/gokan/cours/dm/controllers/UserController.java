@@ -1,5 +1,6 @@
 package ing.gokan.cours.dm.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/users")
 public class UserController {
 
+    /**
+     * Method call with specific URL with GET
+     * @return String
+     */
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
-    public String GetHome() {
+    public String GetAll() {
         return "return of getall";
     }
 }
