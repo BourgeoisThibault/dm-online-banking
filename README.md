@@ -1,12 +1,14 @@
 BOURGEOIS Thibault ING3 FISA/A
+
 DM-ONLINE-BANKING
 ===================
 
-This is homework for Gokan EKINCI.
-This document present the project and who use it.
-For any problem, please contact thibault.bourgeois@etu.u-pec.fr
+    This is homework for Gokan EKINCI.
+    This document present the project and who use it.
+    For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
 **First part: Explication of Build and Launch**
+
 **Second part: Use REST services**
 
 ----------
@@ -18,13 +20,13 @@ FIRST PART
 
 It is a multi-module Maven project with only one module named **module-clientmanagement-services**
 
-> **module-clientmanagement-services:**
->This module have a pom file and 5 subpackages named like
->>-controllers
->>-models
->>-repositories
->>-services
->>-utils
+    This module have a pom file and 5 subpackages named like
+    
+    -controllers
+    -models
+    -repositories
+    -services
+    -utils
 
 
 ### <i class="icon-file"></i> Log file
