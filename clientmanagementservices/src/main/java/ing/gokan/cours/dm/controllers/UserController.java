@@ -3,6 +3,8 @@ package ing.gokan.cours.dm.controllers;
 import ing.gokan.cours.dm.models.UserDto;
 import ing.gokan.cours.dm.repositories.IUserDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.MediaType;
