@@ -2,13 +2,9 @@ package ing.gokan.cours.dm.controllers;
 
 import ing.gokan.cours.dm.models.UserDto;
 import ing.gokan.cours.dm.repositories.IUserDtoService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.jws.soap.SOAPBinding;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -27,62 +23,79 @@ public class UserController {
     private IUserDtoService userDtoService;
 
     /**
-     * Method call with specific URL with GET
-     * @return
+     * Method for get all users
+     * @return list of UserDto formated to JSON
      */
     @RequestMapping(value = "/getall", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
     public List<UserDto> GetAllUser() {
         return userDtoService.getAllUser();
     }
 
+    /**
+     * Method for get users with firstname
+     * @param firstname
+     * @return list of UserDto formated to JSON
+     */
     @RequestMapping(value = "/getbyfirstname", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
     public List<UserDto> GetUserByFirstName(@HeaderParam("firstname") String firstname) {
         return userDtoService.getUserByFirstName(firstname);
     }
 
+    /**
+     * Method for get users with lastname
+     * @param lastname
+     * @return list of UserDto formated to JSON
+     */
     @RequestMapping(value = "/getbylastname", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
     public List<UserDto> GetUserByLastName(@HeaderParam("lastname") String lastname) {
         return userDtoService.getUserByLastName(lastname);
     }
 
+    /**
+     * Method for get users with firstname and lastname
+     * @param firstname
+     * @param lastname
+     * @return list of UserDto formated to JSON
+     */
     @RequestMapping(value = "/getbyuser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
     public UserDto GetUserByUser(@HeaderParam("firstname") String firstname, @HeaderParam("lastname") String lastname) {
         return userDtoService.getUserByUser(new UserDto(firstname,lastname));
     }
 
+    /**
+     * Method for PUT (add) user in database (list)
+     * @param firstName
+     * @param lastName
+     * @return success or error
+     */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public String addUser(@RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName) {
-        if(userDtoService.contains(new UserDto(firstName, lastName))) {
-            return "already exist";
-        } else {
-            userDtoService.addUser(new UserDto(firstName, lastName));
-            return "goog job";
-        }
+        return userDtoService.addUser(new UserDto(firstName, lastName));
     }
 
+    /**
+     * Method for DELETE user from database (list)
+     * @param firstname
+     * @param lastname
+     * @return success or error
+     */
     @RequestMapping(value = "/", method = RequestMethod.DELETE)
     public String deleteUser(@HeaderParam("firstname") String firstname, @HeaderParam("lastname") String lastname) {
-        if(!userDtoService.contains(new UserDto(firstname, lastname))) {
-            return "not exist";
-        } else {
-            userDtoService.deleteUser(new UserDto(firstname, lastname));
-            return "goog job";
-        }
+        return userDtoService.deleteUser(new UserDto(firstname, lastname));
     }
 
+    /**
+     * Method for POST (modify) user from database (list)
+     * @param firstName
+     * @param lastName
+     * @param newFirstName
+     * @param newLastName
+     * @return success or error
+     */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String deleteUser(@RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName,
                              @RequestParam("newfirstname") String newFirstName, @RequestParam("newlastname") String newLastName) {
-        if(!userDtoService.contains(new UserDto(firstName, lastName))) {
-            return "not exist";
-        } else {
-            if(userDtoService.contains(new UserDto(newFirstName, newLastName))) {
-                return "already exist";
-            } else {
-                userDtoService.updateUser(new UserDto(firstName, lastName), new UserDto(newFirstName,newLastName));
-                return "goog job";
-            }
-        }
+        return userDtoService.updateUser(new UserDto(firstName, lastName), new UserDto(newFirstName,newLastName));
     }
 
 }

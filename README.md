@@ -45,9 +45,9 @@ Place in the folder "dm-online-banking". Execute commande.
     mvn clean package
 
 ## <i class="icon-cog"></i> Launch application
-PLace in the folder "dm-online-banking" and then in folder "module-clientmanagement-services". Execute commande.
+PLace in the folder "dm-online-banking" and then in folder "clientmanagementservices". Execute commande.
 
-    java target/client-management-services.jar
+    mvn spring-boot:run
 
 ----------
 
@@ -62,8 +62,9 @@ For test REST services, use Postman application
 > **Collection share:**
 
 > - Download postman
-> - Access to my sharing collection with [this link](https://www.getpostman.com/collections/7f44df12418bf36ad638?_ga=2.1526577.180127832.1508328354-1042454206.1508328354)
+> - Access to my sharing collection with [this link](https://www.getpostman.com/collections/25674275c8b3e09145a7)
 > - Accept to use the new collection
+> - Watch specific documentation generate with [this link](https://documenter.getpostman.com/view/2883916/dm_esipe_ekinci/71E1B7Z)
 > 
 > **REST Methods:**
 
@@ -106,4 +107,10 @@ Use request from the collection Postman.
 Use request from the collection Postman.
 
     User DELETE
-    
+----------
+
+
+OTHER
+-------------------
+
+There is no test because short time.

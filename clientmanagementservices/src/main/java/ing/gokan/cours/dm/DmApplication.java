@@ -1,11 +1,8 @@
 package ing.gokan.cours.dm;
 
-import ing.gokan.cours.dm.controllers.UserController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.logging.Logger;
 

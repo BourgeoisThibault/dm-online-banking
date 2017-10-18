@@ -1,10 +1,8 @@
 package ing.gokan.cours.dm.utils;
 
-import ing.gokan.cours.dm.repositories.IUserDtoService;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,16 +19,13 @@ import java.util.Arrays;
 @Component
 public class TrackController {
 
-    @Autowired
-    private IUserDtoService userDtoService;
-
     final static Logger logger = Logger.getLogger(TrackController.class);
 
     /**
      * This is this method who send respons
      *
      * @param joinPoint
-     * @return
+     * @return object
      * @throws Throwable
      */
     @Around("execution(* ing.gokan.cours.dm.controllers.*.*(..)) ")
