@@ -7,14 +7,13 @@ import lombok.ToString;
 /**
  * @author BOURGEOIS Thibault
  * Date     05/11/2017
- * Time     17:01
+ * Time     22:17
  */
 @Data
 @Builder
 @ToString
-public class AccountDto {
-    private String id;
-    private UserDto userDto;
-    private String accountType;
-    private double solde;
+public class AccountTransaction {
+    private Long idAccount;
+    private Boolean putMoney;
+    private Double amount;
 }

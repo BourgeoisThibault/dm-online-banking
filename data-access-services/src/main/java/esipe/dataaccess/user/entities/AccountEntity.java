@@ -19,8 +19,8 @@ public class AccountEntity {
     @ManyToOne
     private UserEntity userEntity;
 
-    @Column(name = "type_account")
-    private String type_account;
+    @ManyToOne
+    private AccountTypeEntity accountTypeEntity;
 
     @Column(name = "solde")
     private double solde;

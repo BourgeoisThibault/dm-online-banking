@@ -31,22 +31,18 @@ public class AccountService implements IAccountService {
 
     @Override
     public List<AccountDto> getAll() {
-        return accountRepository.findAll()
-                .stream()
-                .map(
-                        u -> mapper.map(u, AccountDto.class)
-                )
-                .collect(Collectors.toList());
+
+        List<AccountEntity> accountEntityList = accountRepository.findAll();
+
+        List<AccountDto> accountDtoList = mapper.map(accountEntityList,List.class);
+
+        return accountDtoList;
     }
 
     @Override
-    public Optional<AccountDto> getAccountById(String id) {
-        AccountEntity accountEntity = accountRepository.findOne(Long.parseLong(id));
-        return (accountEntity != null) ?
-                Optional.of(
-                        mapper.map(accountEntity, AccountDto.class)
-                )
-                : Optional.empty();
+    public AccountDto getAccountById(Long id) {
+        AccountEntity accountEntity = accountRepository.findOne(id);
+        return mapper.map(accountEntity,AccountDto.class);
     }
 
     @Override
@@ -63,7 +59,20 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void update(Long id, AccountDto accountDto) {
+    public void updateAccount(AccountTransaction accountTransaction) {
 
+        AccountEntity accountEntity = accountRepository.findOne(accountTransaction.getIdAccount());
+
+        if(accountEntity.getId() != null) {
+            Double newSolde;
+            if(accountTransaction.getPutMoney() == true) {
+                newSolde = accountEntity.getSolde() + accountTransaction.getAmount();
+            } else {
+                newSolde = accountEntity.getSolde() - accountTransaction.getAmount();
+            }
+            accountEntity.setSolde(newSolde);
+            accountRepository.save(accountEntity);
+        }
     }
+
 }

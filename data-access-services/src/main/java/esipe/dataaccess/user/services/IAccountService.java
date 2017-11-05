@@ -13,8 +13,8 @@ import java.util.Optional;
  */
 public interface IAccountService {
     List<AccountDto> getAll();
-    Optional<AccountDto> getAccountById(String id);
+    AccountDto getAccountById(Long id);
     AccountDto create(AccountDto accountDto);
     void delete(Long id);
-    void update(Long id, AccountDto accountDto);
+    void updateAccount(AccountTransaction accountTransaction);
 }
