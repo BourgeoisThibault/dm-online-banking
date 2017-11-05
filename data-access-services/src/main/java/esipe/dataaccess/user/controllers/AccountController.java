@@ -1,7 +1,7 @@
 package esipe.dataaccess.user.controllers;
 
-import esipe.dataaccess.user.models.AccountDto;
-import esipe.dataaccess.user.models.UserDto;
+import esipe.models.*;
+import esipe.models.*;
 import esipe.dataaccess.user.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

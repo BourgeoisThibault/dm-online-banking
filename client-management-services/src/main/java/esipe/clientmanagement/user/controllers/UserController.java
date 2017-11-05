@@ -1,8 +1,8 @@
 package esipe.clientmanagement.user.controllers;
 
-import esipe.clientmanagement.user.models.UserDto;
 // import org.springframework.data.domain.PageRequest;
 import esipe.restutils.clientmanagement.UserManagement;
+import esipe.models.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

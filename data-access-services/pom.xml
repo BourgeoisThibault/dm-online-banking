@@ -36,6 +36,12 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+
 		<!-- Required for pagination + Database configuration must be done with this dependency -->
 		<!--
 		<dependency>
@@ -81,6 +87,11 @@
 		<dependency>
 			<groupId>gokan.ekinci</groupId>
 			<artifactId>aspectj-aop-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>gokan.ekinci</groupId>
+			<artifactId>client-models</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

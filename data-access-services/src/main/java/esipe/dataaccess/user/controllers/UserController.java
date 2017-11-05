@@ -1,7 +1,7 @@
 package esipe.dataaccess.user.controllers;
 
 import esipe.dataaccess.user.services.UserService;
-import esipe.dataaccess.user.models.UserDto;
+import esipe.models.*;
 // import org.springframework.data.domain.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

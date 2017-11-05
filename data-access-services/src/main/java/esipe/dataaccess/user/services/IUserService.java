@@ -1,6 +1,6 @@
 package esipe.dataaccess.user.services;
 
-import esipe.dataaccess.user.models.UserDto;
+import esipe.models.*;
 
 import java.util.List;
 import java.util.Optional;

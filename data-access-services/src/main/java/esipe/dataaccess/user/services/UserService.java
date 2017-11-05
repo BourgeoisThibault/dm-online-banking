@@ -1,11 +1,13 @@
 package esipe.dataaccess.user.services;
 
 import esipe.dataaccess.user.entities.UserEntity;
-import esipe.dataaccess.user.models.UserDto;
+import esipe.models.*;
 import esipe.dataaccess.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.dozer.DozerBeanMapper;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService implements IUserService {
+
+	DozerBeanMapper mapper = new DozerBeanMapper();
 
 	private final UserRepository userRepository;
 
@@ -24,51 +28,29 @@ public class UserService implements IUserService {
 	@Override
 	public List<UserDto> getAll() {
 		return userRepository.findAll()
-			.stream()
-			.map(
-				u -> UserDto.builder()
-				.id(String.valueOf(u.getId()))
-				.firstName(u.getFirstName())
-				.lastName(u.getLastName())
-						.address(u.getAddress())
-						.phone(u.getPhone())
-				.build()
-			)
-			.collect(Collectors.toList());
+				.stream()
+				.map(
+						u -> mapper.map(u, UserDto.class)
+				)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Optional<UserDto> getUserById(String id) {
 		UserEntity userEntity = userRepository.findOne(Long.parseLong(id));
 		return (userEntity != null) ?
-			Optional.of(
-				UserDto.builder()
-					.id(String.valueOf(userEntity.getId()))
-					.firstName(userEntity.getFirstName())
-					.lastName(userEntity.getLastName())
-						.address(userEntity.getAddress())
-						.phone(userEntity.getPhone())
-					.build()
-			)
-			: Optional.empty();
+				Optional.of(
+						mapper.map(userEntity, UserDto.class)
+				)
+				: Optional.empty();
 	}
 
 	@Override
 	public UserDto create(UserDto userDto) {
-		UserEntity userEntity = new UserEntity();
-		userEntity.setFirstName(userDto.getFirstName());
-		userEntity.setLastName(userDto.getLastName());
-		userEntity.setAddress(userDto.getAddress());
-		userEntity.setPhone(userDto.getPhone());
 
-		UserEntity userEntity1 = userRepository.save(userEntity);
-		return UserDto.builder()
-			.id(String.valueOf(userEntity1.getId()))
-			.firstName(userEntity1.getFirstName())
-			.lastName(userEntity1.getLastName())
-				.address(userEntity1.getAddress())
-				.phone(userEntity1.getPhone())
-			.build();
+		UserEntity userEntity1 = userRepository.save(mapper.map(userDto,UserEntity.class));
+
+		return mapper.map(userEntity1, UserDto.class);
 	}
 
 	@Override
@@ -81,13 +63,24 @@ public class UserService implements IUserService {
 
 		Optional<UserDto> userBdd = this.getUserById(id.toString());
 
-		UserEntity userEntity = new UserEntity();
-		userEntity.setId(id);
-		userEntity.setFirstName(userBdd.get().getFirstName());
-		userEntity.setLastName(userBdd.get().getLastName());
-		userEntity.setAddress(userDto.getAddress());
-		userEntity.setPhone(userDto.getPhone());
+		if(userBdd.isPresent()) {
+			UserEntity userEntity = new UserEntity();
+			userEntity.setId(id);
+			userEntity.setFirstName(userBdd.get().getFirstName());
+			userEntity.setLastName(userBdd.get().getLastName());
 
-		userRepository.save(userEntity);
+			if(userDto.getAddress() != null)	{
+				userEntity.setAddress(userDto.getAddress());
+			} else {
+				userEntity.setAddress(userBdd.get().getAddress());
+			}
+			if(userDto.getPhone() != null)	{
+				userEntity.setPhone(userDto.getPhone());
+			} else {
+				userEntity.setPhone(userBdd.get().getPhone());
+			}
+
+			userRepository.save(userEntity);
+		}
 	}
 }
