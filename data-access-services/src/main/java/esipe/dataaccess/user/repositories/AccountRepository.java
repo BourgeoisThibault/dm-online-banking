@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
     List<AccountEntity> findAll();
+    List<AccountEntity> findAllByUserEntity(Long id);
+    List<AccountEntity> findAllByUserEntity(UserEntity userEntity);
 }

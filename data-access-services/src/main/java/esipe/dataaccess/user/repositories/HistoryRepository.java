@@ -1,5 +1,6 @@
 package esipe.dataaccess.user.repositories;
 
+import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.dataaccess.user.entities.HistoryEntity;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,5 +15,5 @@ import java.util.List;
 public interface HistoryRepository extends CrudRepository<HistoryEntity, Long>{
     List<HistoryEntity> findAll();
     List<HistoryEntity> findAllByAccountEntity_Id(Long id);
-    List<HistoryEntity> findAllByAccountEntity_IdAndDateTransactionAfter(Long id, Timestamp timestamp);
+    List<HistoryEntity> findAllByAccountEntity_IdAndDateTransactionAfterAndPutTransaction(Long id, Timestamp timestamp, Boolean put);
 }

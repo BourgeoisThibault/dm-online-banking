@@ -29,37 +29,39 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<UserDto> get(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") String id) {
+	public ResponseEntity getOneUser(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") Long id) {
 
-		final Optional<UserDto> dtoOpt = userService.getUserById(id);
+		try {
+			UserDto userDto = userService.getUserById(id);
+			return new ResponseEntity(userDto,HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(new ErrorModel(e.getMessage()),HttpStatus.FORBIDDEN);
+		}
 
-		return (dtoOpt.isPresent()) ?
-			new ResponseEntity<>(dtoOpt.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity getAllUser() {
 
 		final List<UserDto> userDtoList = userService.getAll();
 
 		return (!userDtoList.isEmpty()) ?
-			new ResponseEntity<>(userDtoList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			new ResponseEntity(userDtoList, HttpStatus.OK) : new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<UserDto> create(@RequestBody UserDto user) {
+	public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
 		return new ResponseEntity<>(userService.create(user), HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UserDto user) {
-		userService.update(id,user);
-		return new ResponseEntity<>(HttpStatus.OK);
+	public ResponseEntity updateUser(@PathVariable Long id, @RequestBody UserDto user) {
+		try {
+			userService.update(id,user);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(new ErrorModel(e.getMessage()), HttpStatus.FORBIDDEN);
+		}
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		userService.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
 }

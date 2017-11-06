@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface IHistoryService {
     List<HistoryDto> getAllByAccountId(Long id);
-    List<HistoryDto> getAllByAccountIdAfterWeek(Long id);
-    HistoryDto create(HistoryDto historyDto);
+    void create(HistoryDto historyDto);
+    Boolean allowGetTransaction(Long id, Double amount);
 }

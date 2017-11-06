@@ -49,7 +49,7 @@ public class UserManagement {
             ArrayList<T> result = restTemplate.getForObject(myUri,new ArrayList<T>().getClass());
             return result;
         } catch (Throwable throwable) {
-            return null;
+            return new ArrayList<T>();
         }
     }
 
@@ -72,29 +72,17 @@ public class UserManagement {
 
     public static <T> void putMethode(String paramEndUri, Long id, T newObject) {
 
-        final String myUri = PARAM_URI_ROOT +
+        String myUri = PARAM_URI_ROOT +
                 PARAM_PORT +
                 PARAM_PRIMARY +
-                paramEndUri +
-                id;
+                paramEndUri;
+
+        if(id != null)
+            myUri = myUri + id;
 
         RestTemplate restTemplate = new RestTemplate();
 
         restTemplate.put(myUri, newObject);
     }
 
-    /*
-    public static void deleteMethode(String paramEndUri, Long id) {
-
-        final String myUri = PARAM_URI_ROOT +
-                PARAM_PORT +
-                PARAM_PRIMARY +
-                paramEndUri +
-                id;
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.delete(myUri);
-    }
-    */
 }

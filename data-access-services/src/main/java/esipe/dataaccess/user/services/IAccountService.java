@@ -12,9 +12,8 @@ import java.util.Optional;
  * Time     02:13
  */
 public interface IAccountService {
-    List<AccountDto> getAll();
+    List<AccountDto> getAllAccountOfUser(Long id) throws Exception;
     AccountDto getAccountById(Long id);
-    AccountDto create(AccountDto accountDto);
-    void delete(Long id);
-    void updateAccount(AccountTransaction accountTransaction);
+    AccountDto create(AccountDto accountDto) throws Exception;
+    void updateAccount(AccountTransaction accountTransaction) throws Exception;
 }

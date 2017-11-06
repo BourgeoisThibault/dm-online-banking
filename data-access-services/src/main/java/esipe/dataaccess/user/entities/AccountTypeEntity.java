@@ -14,4 +14,7 @@ import javax.persistence.*;
 public class AccountTypeEntity {
     @Id
     private String type;
+
+    @Column(name = "min_age")
+    private int minAge;
 }

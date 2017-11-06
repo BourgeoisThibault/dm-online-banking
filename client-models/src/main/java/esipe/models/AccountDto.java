@@ -10,10 +10,9 @@ import lombok.ToString;
  * Time     17:01
  */
 @Data
-@Builder
 @ToString
 public class AccountDto {
-    private String id;
+    private Long id;
     private UserDto userDto;
     private String accountType;
     private double solde;

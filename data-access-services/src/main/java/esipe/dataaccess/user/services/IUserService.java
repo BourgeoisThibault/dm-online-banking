@@ -9,11 +9,11 @@ public interface IUserService {
 
 	List<UserDto> getAll();
 
-	Optional<UserDto> getUserById(String id);
+	UserDto getUserById(Long id) throws Exception;
 
 	UserDto create(UserDto userDto);
 
 	void delete(Long id);
 
-	void update(Long id, UserDto userDto);
+	void update(Long id, UserDto userDto) throws Exception;
 }

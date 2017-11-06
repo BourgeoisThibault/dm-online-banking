@@ -10,7 +10,6 @@ import lombok.ToString;
  * Time     22:17
  */
 @Data
-@Builder
 @ToString
 public class AccountTransaction {
     private Long idAccount;

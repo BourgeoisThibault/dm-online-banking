@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @ToString
 public class HistoryDto {
     private Long id;
-    private AccountDto accountEntity;
+    private AccountDto accountDto;
     private Boolean putTransaction;
     private Double amount;
     private Timestamp dateTransaction;

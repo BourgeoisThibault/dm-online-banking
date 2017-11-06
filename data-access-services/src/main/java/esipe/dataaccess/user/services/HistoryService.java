@@ -1,13 +1,21 @@
 package esipe.dataaccess.user.services;
 
+import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.dataaccess.user.entities.HistoryEntity;
 import esipe.dataaccess.user.repositories.HistoryRepository;
 import esipe.dataaccess.user.repositories.UserRepository;
+import esipe.models.AccountDto;
 import esipe.models.HistoryDto;
+import esipe.models.UserDto;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,16 +37,44 @@ public class HistoryService implements IHistoryService {
 
     @Override
     public List<HistoryDto> getAllByAccountId(Long id) {
-        return null;
+        List<HistoryEntity> historyEntityList = historyRepository.findAllByAccountEntity_Id(id);
+
+        List<HistoryDto> historyDtoList = new ArrayList<HistoryDto>();
+        for(int i=0 ; i<historyEntityList.size() ; i++) {
+            historyDtoList.add(mapper.map(historyEntityList.get(i), HistoryDto.class));
+            historyDtoList.get(i).setAccountDto(mapper.map(historyEntityList.get(i).getAccountEntity(), AccountDto.class));
+            historyDtoList.get(i).getAccountDto().setAccountType(historyEntityList.get(i).getAccountEntity().getAccountTypeEntity().getType());
+            historyDtoList.get(i).getAccountDto().setUserDto(mapper.map(historyEntityList.get(i).getAccountEntity().getUserEntity(), UserDto.class));
+        }
+        return historyDtoList;
     }
 
     @Override
-    public List<HistoryDto> getAllByAccountIdAfterWeek(Long id) {
-        return null;
+    public void create(HistoryDto historyDto) {
+        HistoryEntity historyEntity = mapper.map(historyDto,HistoryEntity.class);
+        historyEntity.setAccountEntity(mapper.map(historyDto.getAccountDto(),AccountEntity.class));
+        historyRepository.save(historyEntity);
     }
 
     @Override
-    public HistoryDto create(HistoryDto historyDto) {
-        return null;
+    public Boolean allowGetTransaction(Long id, Double amount) {
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        ZonedDateTime zonedDateTime = timestamp.toInstant().atZone(ZoneId.of("UTC"));
+        timestamp = Timestamp.from(zonedDateTime.plus(-7, ChronoUnit.DAYS).toInstant());
+
+        List<HistoryEntity> historyDtoList = historyRepository.findAllByAccountEntity_IdAndDateTransactionAfterAndPutTransaction(id,timestamp,false);
+
+        Double calc = 0.0;
+        for(HistoryEntity item : historyDtoList){
+            calc += item.getAmount();
+        }
+
+        if((calc + amount) > 800) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
 }

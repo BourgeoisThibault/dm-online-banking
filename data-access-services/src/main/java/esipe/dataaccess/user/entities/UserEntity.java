@@ -3,6 +3,7 @@ package esipe.dataaccess.user.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Data
@@ -23,4 +24,8 @@ public class UserEntity {
 
 	@Column(name = "phone")
 	private String phone;
+
+	@Column(name = "birth")
+	private Date birth;
+
 }
