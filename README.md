@@ -9,6 +9,10 @@ For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
 All constraints from exam are respected.
 
+![alt text](http://url/to/img.png)
+
+![alt text](http://url/to/img.png)
+
 ----------
 
 ### <i class="icon-folder-open"></i> Project
