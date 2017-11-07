@@ -1,4 +1,5 @@
 BOURGEOIS Thibault ING3 FISA/A
+
 DM-ONLINE-BANKING
 ===================
 
@@ -8,7 +9,7 @@ For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
 ----------
 
-###<i class="icon-folder-open"></i>Project
+### <i class="icon-folder-open"></i> Project
 
 It is a multi-module Maven project with next modules
 
@@ -36,17 +37,17 @@ This project manage logging in console and in file. Log config is located in **a
 
     logging.file=c:/Temp/mylog.log
 
-###<i class="icon-download"></i> Clone repository
+### <i class="icon-download"></i> Clone repository
 Execute this commande in personnal folder.
 
     git clone https://github.com/BourgeoisThibault/dm-online-banking.git
 
-###<i class="icon-cog"></i> Build project
+### <i class="icon-cog"></i> Build project
 Place in the folder "dm-online-banking". Execute commande.
 
     mvn clean package
 
-## <i class="icon-cog"></i> Launch application
+### <i class="icon-cog"></i> Launch application
 For this project, you need mysql with database named "banking".
 Mysql url must be *jdbc:mysql://localhost:3306/banking*
 Mysql login/pass must be *esibank/esibank*
@@ -64,7 +65,7 @@ Place in the folder "dm-online-banking"  and execute this commande to start data
   
     java client-services/target/client-services.jar
 
-###<i class="icon-cog"></i> Swagger doc
+### <i class="icon-cog"></i> Swagger doc
 Import YAML file on swagger.io
 
     swagger_client.yml
