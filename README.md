@@ -7,6 +7,8 @@ This is homework for Gokan EKINCI.
 This document present the project and who use it.
 For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
+All constraints from exam are respected.
+
 ----------
 
 ### <i class="icon-folder-open"></i> Project
