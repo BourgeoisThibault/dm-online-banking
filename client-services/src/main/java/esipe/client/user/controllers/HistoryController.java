@@ -23,7 +23,7 @@ public class HistoryController {
     private String PATH_ROOT = "history/";
 
     @RequestMapping(path = "/account/{id}", method = RequestMethod.GET)
-    public ResponseEntity getAccountHistory(@PathVariable Long id) {
+    public void getAccountHistory(@PathVariable Long id) {
 
         //List<AccountDto> accountDtoList = UserManagement.getListMethode(PATH_ROOT + "user/" + id);
 
@@ -32,7 +32,7 @@ public class HistoryController {
     }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
-    public ResponseEntity getUserHistory(@PathVariable Long id) {
+    public void getUserHistory(@PathVariable Long id) {
 
         //List<AccountDto> accountDtoList = UserManagement.getListMethode(PATH_ROOT + "user/" + id);
 

@@ -58,17 +58,28 @@ Mysql login/pass must be *esibank/esibank*
 
 Database is populate when app start.
 
-Place in the folder "dm-online-banking"  and execute this commande to start data-access rest.
+Place in the folder "dm-online-banking"  
 
-    java data-access-services/target/data-access-services.jar
+ Execute this commande to install project
+ 
+	mvn clean install
+
+ Then execute this commande to start data-access rest.
+
+    cd data-access-services
+	mvn spring-boot:run
     
  Then execute this commande for client-management
  
-    java client-management-services/target/client-management-services.jar
+	cd ..
+    cd client-management-services
+	mvn spring-boot:run
 
  Then execute this commande for client
-  
-    java client-services/target/client-services.jar
+ 
+	cd ..
+    cd client-services
+	mvn spring-boot:run
 
 ### <i class="icon-cog"></i> Swagger doc
 Import YAML file on swagger.io there are no YAML for data-access because note use directly by client.
