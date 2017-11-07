@@ -1,5 +1,6 @@
 package esipe.client.user.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import esipe.models.ErrorModel;
 import esipe.models.UserDto;
 import esipe.restutils.RestManagement;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 /**
  * @author BOURGEOIS Thibault
@@ -22,12 +25,16 @@ public class UserController {
     private String PATH_ROOT = "users/";
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity getUser(@PathVariable Long id) {
+    public ResponseEntity getUser(@PathVariable Long id) throws IOException {
 
-        UserDto userDto = RestManagement.getMethode(PATH_ROOT, id, UserDto.class);
+        try {
+            return RestManagement.getResponse(PATH_ROOT, id);
+        } catch (Exception e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ErrorModel errorModel = objectMapper.readValue(e.getMessage(),ErrorModel.class);
+            return new ResponseEntity(errorModel,HttpStatus.FORBIDDEN);
+        }
 
-        return !(userDto == null) ?
-                new ResponseEntity(userDto, HttpStatus.OK) : new ResponseEntity(new ErrorModel("User inconnu"),HttpStatus.FORBIDDEN);
     }
 
 

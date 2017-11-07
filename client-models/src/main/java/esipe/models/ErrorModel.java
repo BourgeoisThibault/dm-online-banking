@@ -17,4 +17,7 @@ public class ErrorModel {
     public ErrorModel(String errorTitle) {
         this.errorTitle=errorTitle;
     }
+    public ErrorModel() {
+
+    }
 }

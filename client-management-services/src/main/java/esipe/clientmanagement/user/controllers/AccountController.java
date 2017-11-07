@@ -1,5 +1,6 @@
 package esipe.clientmanagement.user.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import esipe.models.AccountDto;
 import esipe.models.ErrorModel;
 import esipe.restutils.RestManagement;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,21 +23,29 @@ public class AccountController {
     private String PATH_ROOT = "accounts/";
 
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
-    public ResponseEntity getUserAccount(@PathVariable Long id) {
+    public ResponseEntity getUserAccount(@PathVariable Long id) throws IOException {
 
-        List<AccountDto> accountDtoList = RestManagement.getListMethode(PATH_ROOT + "user/" + id);
+        try {
+            return RestManagement.getResponse(PATH_ROOT + "user/", id);
+        } catch (Exception e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ErrorModel errorModel = objectMapper.readValue(e.getMessage(),ErrorModel.class);
+            return new ResponseEntity(errorModel,HttpStatus.FORBIDDEN);
+        }
 
-        return (!accountDtoList.isEmpty()) ?
-                new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun comptes"),HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity createAccount(@RequestBody AccountDto accountDto) {
+    public ResponseEntity createAccount(@RequestBody AccountDto accountDto) throws IOException {
 
-        AccountDto accountDtoNew = RestManagement.postMethode(PATH_ROOT, accountDto, AccountDto.class);
+        try {
+            return RestManagement.postReponse(PATH_ROOT, accountDto);
+        } catch (Exception e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ErrorModel errorModel = objectMapper.readValue(e.getMessage(),ErrorModel.class);
+            return new ResponseEntity(errorModel,HttpStatus.FORBIDDEN);
+        }
 
-        return !(accountDtoNew == null) ?
-                new ResponseEntity(accountDtoNew, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Erreur de création"), HttpStatus.FORBIDDEN);
     }
 
 }

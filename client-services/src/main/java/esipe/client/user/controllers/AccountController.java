@@ -1,5 +1,6 @@
 package esipe.client.user.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import esipe.models.AccountDto;
 import esipe.models.AccountTransaction;
 import esipe.models.ErrorModel;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -22,19 +24,30 @@ public class AccountController {
     private String PATH_ROOT = "accounts/";
 
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
-    public ResponseEntity getUserAccount(@PathVariable Long id) {
+    public ResponseEntity getUserAccount(@PathVariable Long id) throws IOException {
 
-        List<AccountDto> accountDtoList = RestManagement.getListMethode(PATH_ROOT + "user/" + id);
+        try {
+            return RestManagement.getResponse(PATH_ROOT + "user/", id);
+        } catch (Exception e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ErrorModel errorModel = objectMapper.readValue(e.getMessage(),ErrorModel.class);
+            return new ResponseEntity(errorModel,HttpStatus.FORBIDDEN);
+        }
 
-        return (!accountDtoList.isEmpty()) ?
-                new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun comptes"),HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@RequestBody AccountTransaction accountTransaction) {
+    public ResponseEntity updateUser(@RequestBody AccountTransaction accountTransaction) throws IOException {
 
-        RestManagement.putMethode(PATH_ROOT, null, accountTransaction);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            RestManagement.putResponse(PATH_ROOT,null, accountTransaction);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            ErrorModel errorModel = objectMapper.readValue(e.getMessage(),ErrorModel.class);
+            return new ResponseEntity(errorModel,HttpStatus.FORBIDDEN);
+        }
+
     }
 
 }
