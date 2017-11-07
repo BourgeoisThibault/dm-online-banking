@@ -13,6 +13,7 @@ For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
 It is a multi-module Maven project with next modules
 
+
 > **aspectj-aop-utils :**
 >This module is for AOP process
 >
@@ -28,6 +29,7 @@ It is a multi-module Maven project with next modules
 > **data-access-services :**
 >This module is for access to bdd (contains entities)
 >
+
 > **rest-client-utils :**
 >This module is for share methode with specifique methods
 
@@ -49,8 +51,11 @@ Place in the folder "dm-online-banking". Execute commande.
 
 ### <i class="icon-cog"></i> Launch application
 For this project, you need mysql with database named "banking".
+
 Mysql url must be *jdbc:mysql://localhost:3306/banking*
+
 Mysql login/pass must be *esibank/esibank*
+
 Database is populate when app start.
 
 Place in the folder "dm-online-banking"  and execute this commande to start data-access rest.
