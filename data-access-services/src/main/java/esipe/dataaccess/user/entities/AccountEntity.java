@@ -1,6 +1,5 @@
 package esipe.dataaccess.user.entities;
 
-import esipe.models.AccountDto;
 import lombok.Data;
 
 import javax.persistence.*;

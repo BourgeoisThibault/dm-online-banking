@@ -1,10 +1,8 @@
 package esipe.dataaccess.user.services;
 
-import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.models.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author BOURGEOIS Thibault

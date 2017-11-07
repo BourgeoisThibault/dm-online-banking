@@ -1,6 +1,5 @@
 package esipe.dataaccess.user.services;
 
-import esipe.dataaccess.user.entities.UserEntity;
 import esipe.models.HistoryDto;
 import esipe.models.UserDto;
 

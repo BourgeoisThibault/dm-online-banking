@@ -4,7 +4,6 @@ import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.dataaccess.user.entities.HistoryEntity;
 import esipe.dataaccess.user.entities.UserEntity;
 import esipe.dataaccess.user.repositories.HistoryRepository;
-import esipe.dataaccess.user.repositories.UserRepository;
 import esipe.models.AccountDto;
 import esipe.models.HistoryDto;
 import esipe.models.UserDto;

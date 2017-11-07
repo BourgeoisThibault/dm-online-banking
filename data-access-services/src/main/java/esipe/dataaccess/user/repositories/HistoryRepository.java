@@ -1,6 +1,5 @@
 package esipe.dataaccess.user.repositories;
 
-import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.dataaccess.user.entities.HistoryEntity;
 import esipe.dataaccess.user.entities.UserEntity;
 import org.springframework.data.repository.CrudRepository;

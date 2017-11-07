@@ -3,7 +3,6 @@ package esipe.dataaccess.user.controllers;
 import esipe.dataaccess.user.services.HistoryService;
 import esipe.dataaccess.user.services.UserService;
 import esipe.models.*;
-// import org.springframework.data.domain.PageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Gokan EKINCI

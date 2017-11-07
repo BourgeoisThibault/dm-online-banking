@@ -1,10 +1,6 @@
 package esipe.dataaccess.user.services;
 
-import esipe.dataaccess.user.entities.AccountEntity;
-import esipe.dataaccess.user.entities.AccountTypeEntity;
-import esipe.dataaccess.user.entities.HistoryEntity;
 import esipe.dataaccess.user.entities.UserEntity;
-import esipe.dataaccess.user.repositories.HistoryRepository;
 import esipe.dataaccess.user.repositories.UserRepository;
 import esipe.models.UserDto;
 import org.junit.Before;
@@ -14,13 +10,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 /**
