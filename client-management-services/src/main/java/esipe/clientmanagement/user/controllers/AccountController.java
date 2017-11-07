@@ -2,8 +2,7 @@ package esipe.clientmanagement.user.controllers;
 
 import esipe.models.AccountDto;
 import esipe.models.ErrorModel;
-import esipe.models.UserDto;
-import esipe.restutils.clientmanagement.UserManagement;
+import esipe.restutils.RestManagement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ public class AccountController {
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserAccount(@PathVariable Long id) {
 
-        List<AccountDto> accountDtoList = UserManagement.getListMethode(PATH_ROOT + "user/" + id);
+        List<AccountDto> accountDtoList = RestManagement.getListMethode(PATH_ROOT + "user/" + id);
 
         return (!accountDtoList.isEmpty()) ?
                 new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun comptes"),HttpStatus.FORBIDDEN);
@@ -33,7 +32,7 @@ public class AccountController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createAccount(@RequestBody AccountDto accountDto) {
 
-        AccountDto accountDtoNew = UserManagement.postMethode(PATH_ROOT, accountDto, AccountDto.class);
+        AccountDto accountDtoNew = RestManagement.postMethode(PATH_ROOT, accountDto, AccountDto.class);
 
         return !(accountDtoNew == null) ?
                 new ResponseEntity(accountDtoNew, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Erreur de création"), HttpStatus.FORBIDDEN);

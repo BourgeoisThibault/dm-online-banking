@@ -1,4 +1,4 @@
-package esipe.restutils.clientmanagement;
+package esipe.restutils;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
  * Date     04/11/2017
  * Time     22:08
  */
-public class UserManagement {
+public class RestManagement {
 
     private static String PARAM_URI_ROOT = "http://localhost";
     private static String PARAM_PORT = ":25003";

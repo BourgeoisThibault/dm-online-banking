@@ -3,8 +3,7 @@ package esipe.client.user.controllers;
 import esipe.models.AccountDto;
 import esipe.models.AccountTransaction;
 import esipe.models.ErrorModel;
-import esipe.models.UserDto;
-import esipe.restutils.clientmanagement.UserManagement;
+import esipe.restutils.RestManagement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class AccountController {
     @RequestMapping(path = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserAccount(@PathVariable Long id) {
 
-        List<AccountDto> accountDtoList = UserManagement.getListMethode(PATH_ROOT + "user/" + id);
+        List<AccountDto> accountDtoList = RestManagement.getListMethode(PATH_ROOT + "user/" + id);
 
         return (!accountDtoList.isEmpty()) ?
                 new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun comptes"),HttpStatus.FORBIDDEN);
@@ -34,7 +33,7 @@ public class AccountController {
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity updateUser(@RequestBody AccountTransaction accountTransaction) {
 
-        UserManagement.putMethode(PATH_ROOT, null, accountTransaction);
+        RestManagement.putMethode(PATH_ROOT, null, accountTransaction);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

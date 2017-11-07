@@ -4,9 +4,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
 @SpringBootApplication
-public class ClientManagement {
+public class App {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClientManagement.class, args);
+		SpringApplication.run(App.class, args);
 	}
 }

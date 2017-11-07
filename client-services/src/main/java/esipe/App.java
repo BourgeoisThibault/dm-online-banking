@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Time     21:50
  */
 @SpringBootApplication
-public class AppClient {
+public class App {
 
     public static void main(String[] args) {
-        SpringApplication.run(AppClient.class, args);
+        SpringApplication.run(App.class, args);
     }
 }

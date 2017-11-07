@@ -1,7 +1,7 @@
 package esipe.client.user.controllers;
 
 import esipe.models.*;
-import esipe.restutils.clientmanagement.UserManagement;
+import esipe.restutils.RestManagement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class HistoryController {
     @RequestMapping(path = "/account/{id}", method = RequestMethod.GET)
     public ResponseEntity getAccountHistory(@PathVariable Long id) {
 
-        List<HistoryDto> historyDtoList = UserManagement.getListMethode(PATH_ROOT + "accounts/history/" + id);
+        List<HistoryDto> historyDtoList = RestManagement.getListMethode(PATH_ROOT + "accounts/history/" + id);
 
         return (!historyDtoList.isEmpty()) ?
                 new ResponseEntity(historyDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun historique"),HttpStatus.FORBIDDEN);
@@ -31,7 +31,7 @@ public class HistoryController {
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
     public ResponseEntity getUserHistory(@PathVariable Long id) {
 
-        List<AccountDto> accountDtoList = UserManagement.getListMethode(PATH_ROOT + "users/history/" + id);
+        List<AccountDto> accountDtoList = RestManagement.getListMethode(PATH_ROOT + "users/history/" + id);
 
         return (!accountDtoList.isEmpty()) ?
                 new ResponseEntity(accountDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun historique"),HttpStatus.FORBIDDEN);
