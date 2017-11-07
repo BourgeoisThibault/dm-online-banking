@@ -71,7 +71,7 @@ Place in the folder "dm-online-banking"  and execute this commande to start data
     java client-services/target/client-services.jar
 
 ### <i class="icon-cog"></i> Swagger doc
-Import YAML file on swagger.io
+Import YAML file on swagger.io there are no YAML for data-access because note use directly by client.
 
     swagger_client.yml
     swagger_clientmanagement.yml
