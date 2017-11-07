@@ -1,0 +1,21 @@
+curl -X GET "http://localhost:25002/client/user/1" -H "accept: application/json"
+
+curl -X PUT "http://localhost:25002/client/accounts" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"idAccount\": 1, \"putMoney\": true, \"amount\": 123.45}"
+
+curl -X GET "http://localhost:25002/client/accounts/users/1" -H "accept: application/json"
+
+curl -X GET "http://localhost:25002/client/history/account/1" -H "accept: application/json"
+
+curl -X GET "http://localhost:25002/client/history/user/1" -H "accept: application/json"
+
+curl -X GET "http://localhost:25001/client-management/users" -H "accept: application/json"
+
+curl -X POST "http://localhost:25001/client-management/users" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"lastName\": \"BOURGEOIS\", \"firstName\": \"Thibault\", \"address\": \"26 rue Chateaubriand\", \"phone\": \"0629516898\", \"birth\": \"2017-07-06\"}"
+
+curl -X GET "http://localhost:25001/client-management/users/1" -H "accept: application/json"
+
+curl -X PUT "http://localhost:25001/client-management/users/1" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": 1, \"lastName\": \"BOURGEOIS\", \"firstName\": \"Thibault\", \"address\": \"26 rue Chateaubriand\", \"phone\": \"0130641835\", \"birth\": \"2017-07-06\"}"
+
+curl -X POST "http://localhost:25001/client-management/accounts" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"id\": 1, \"userDto\": { \"id\": 1, \"lastName\": \"BOURGEOIS\", \"firstName\": \"Thibault\", \"address\": \"26 rue Chateaubriand\", \"phone\": \"0629516898\", \"birth\": \"2017-07-06\" }, \"accountType\": \"Livret jeune\", \"solde\": 123.45}"
+
+curl -X GET "http://localhost:25001/client-management/accounts/users/1" -H "accept: application/json"

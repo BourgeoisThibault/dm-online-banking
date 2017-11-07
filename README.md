@@ -89,20 +89,6 @@ Import YAML file on swagger.io there are no YAML for data-access because note us
 
 ----------
 
-For test REST services, use Postman application
+For test REST services, curl_request.request file
 
-    http://www.getpostman.com/
-
-> **Collection share:**
-
-> - Download postman
-> - Access to my sharing collection with [this link](https://www.getpostman.com/collections/7f44df12418bf36ad638?_ga=2.1526577.180127832.1508328354-1042454206.1508328354)
-> - Accept to use the new collection
-> 
-> **REST Methods:**
-
-> - GET method return JSON
-> - PUT method return String
-> - POST method return String
-> - DELETE method return String
-
+    There are in this file all CURL from swagger. Test on my environment.
