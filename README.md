@@ -9,9 +9,9 @@ For any problem, please contact thibault.bourgeois@etu.u-pec.fr
 
 All constraints from exam are respected.
 
-![Alt text](https://github.com/BourgeoisThibault/dm-online-banking/blob/master/_Diagrams/EntityDiagram.jpg "Entity")
+![Alt text](https://github.com/BourgeoisThibault/dm-online-banking/blob/master/Diagrams/EntityDiagram.jpg "Entity")
 
-![Alt text](https://github.com/BourgeoisThibault/dm-online-banking/blob/master/_Diagrams/DeploiementDiagram.jpg "Deploiement")
+![Alt text](https://github.com/BourgeoisThibault/dm-online-banking/blob/master/Diagrams/DeploiementDiagram.jpg "Deploiement")
 
 ----------
 
