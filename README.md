@@ -31,7 +31,6 @@ It is a multi-module Maven project with next modules
 > **data-access-services :**
 >This module is for access to bdd (contains entities)
 >
-
 > **rest-client-utils :**
 >This module is for share methode with specifique methods
 
