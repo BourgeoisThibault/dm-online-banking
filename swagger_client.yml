@@ -213,7 +213,7 @@ definitions:
       dateTransaction:
         type: "string"
         format: "date-time"
-        example: "???"
+        example: "1510008521000"
   ErrorModels:
     type: "object"
     properties:

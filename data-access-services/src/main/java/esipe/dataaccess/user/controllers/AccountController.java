@@ -53,7 +53,7 @@ public class AccountController {
     }
 
     @RequestMapping(path = "/history/{id}", method = RequestMethod.GET)
-    public ResponseEntity getHistoryAccountOfUser(@PathVariable Long id) {
+    public ResponseEntity getHistoryOfOneAccount(@PathVariable Long id) {
 
         try {
             List<HistoryDto> historyDtoList = historyService.getAllByAccountId(id);

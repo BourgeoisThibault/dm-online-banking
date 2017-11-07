@@ -2,6 +2,7 @@ package esipe.dataaccess.user.services;
 
 import esipe.dataaccess.user.entities.AccountEntity;
 import esipe.dataaccess.user.entities.HistoryEntity;
+import esipe.dataaccess.user.entities.UserEntity;
 import esipe.dataaccess.user.repositories.HistoryRepository;
 import esipe.dataaccess.user.repositories.UserRepository;
 import esipe.models.AccountDto;
@@ -38,6 +39,20 @@ public class HistoryService implements IHistoryService {
     @Override
     public List<HistoryDto> getAllByAccountId(Long id) {
         List<HistoryEntity> historyEntityList = historyRepository.findAllByAccountEntity_Id(id);
+
+        List<HistoryDto> historyDtoList = new ArrayList<HistoryDto>();
+        for(int i=0 ; i<historyEntityList.size() ; i++) {
+            historyDtoList.add(mapper.map(historyEntityList.get(i), HistoryDto.class));
+            historyDtoList.get(i).setAccountDto(mapper.map(historyEntityList.get(i).getAccountEntity(), AccountDto.class));
+            historyDtoList.get(i).getAccountDto().setAccountType(historyEntityList.get(i).getAccountEntity().getAccountTypeEntity().getType());
+            historyDtoList.get(i).getAccountDto().setUserDto(mapper.map(historyEntityList.get(i).getAccountEntity().getUserEntity(), UserDto.class));
+        }
+        return historyDtoList;
+    }
+
+    @Override
+    public List<HistoryDto> getAllByUserId(UserDto userDto) {
+        List<HistoryEntity> historyEntityList = historyRepository.findAllByAccountEntity_UserEntity(mapper.map(userDto,UserEntity.class));
 
         List<HistoryDto> historyDtoList = new ArrayList<HistoryDto>();
         for(int i=0 ; i<historyEntityList.size() ; i++) {

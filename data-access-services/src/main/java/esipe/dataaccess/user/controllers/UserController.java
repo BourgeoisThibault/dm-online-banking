@@ -1,5 +1,6 @@
 package esipe.dataaccess.user.controllers;
 
+import esipe.dataaccess.user.services.HistoryService;
 import esipe.dataaccess.user.services.UserService;
 import esipe.models.*;
 // import org.springframework.data.domain.PageRequest;
@@ -22,10 +23,13 @@ import java.util.Optional;
 public class UserController {
 
 	private final UserService userService;
+	private final HistoryService historyService;
 
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService,
+						  HistoryService historyService) {
 		this.userService = userService;
+		this.historyService = historyService;
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -38,6 +42,21 @@ public class UserController {
 			return new ResponseEntity(new ErrorModel(e.getMessage()),HttpStatus.FORBIDDEN);
 		}
 
+	}
+
+	@RequestMapping(path = "/history/{id}", method = RequestMethod.GET)
+	public ResponseEntity getHistoryAccountOfUser(@PathVariable Long id) {
+
+		try {
+			UserDto userDto = userService.getUserById(id);
+			if(userDto == null)
+				return new ResponseEntity(new ErrorModel("User inconnu"),HttpStatus.FORBIDDEN);
+			List<HistoryDto> historyDtoList = historyService.getAllByUserId(userDto);
+			return (!historyDtoList.isEmpty()) ?
+					new ResponseEntity(historyDtoList, HttpStatus.OK) : new ResponseEntity(new ErrorModel("Aucun résultat"), HttpStatus.FORBIDDEN);
+		} catch (Exception e) {
+			return new ResponseEntity(new ErrorModel(e.getMessage()),HttpStatus.FORBIDDEN);
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

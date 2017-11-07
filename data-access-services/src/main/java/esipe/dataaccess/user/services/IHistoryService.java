@@ -1,6 +1,8 @@
 package esipe.dataaccess.user.services;
 
+import esipe.dataaccess.user.entities.UserEntity;
 import esipe.models.HistoryDto;
+import esipe.models.UserDto;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  */
 public interface IHistoryService {
     List<HistoryDto> getAllByAccountId(Long id);
+    List<HistoryDto> getAllByUserId(UserDto userDto);
     void create(HistoryDto historyDto);
     Boolean allowGetTransaction(Long id, Double amount);
 }
