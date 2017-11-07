@@ -6,3 +6,8 @@ INSERT INTO `type_account` (`type`, `min_age`) VALUES ('Livret jeune', 25);
 INSERT INTO `account` (`id`, `solde`, `account_type_entity_type`, `user_entity_id`) VALUES (1, 123.123, 'Compte courant', 1);
 INSERT INTO `account` (`id`, `solde`, `account_type_entity_type`, `user_entity_id`) VALUES (2, 8000, 'Livret A', 1);
 INSERT INTO `account` (`id`, `solde`, `account_type_entity_type`, `user_entity_id`) VALUES (3, 12.1, 'Compte courant', 2);
+INSERT INTO `history` (`id`, `amount`, `date_transaction`, `put_transaction`, `account_entity_id`) VALUES (1, 200.13, '2017-11-06 22:30:18', b'1', 1);
+INSERT INTO `history` (`id`, `amount`, `date_transaction`, `put_transaction`, `account_entity_id`) VALUES (2, 200.13, '2017-11-06 22:33:13', b'1', 1);
+INSERT INTO `history` (`id`, `amount`, `date_transaction`, `put_transaction`, `account_entity_id`) VALUES (3, 23.13, '2017-11-06 22:33:21', b'1', 3);
+INSERT INTO `history` (`id`, `amount`, `date_transaction`, `put_transaction`, `account_entity_id`) VALUES (4, 131, '2017-11-06 22:38:14', b'0', 1);
+INSERT INTO `history` (`id`, `amount`, `date_transaction`, `put_transaction`, `account_entity_id`) VALUES (5, 131, '2017-11-06 22:38:45', b'0', 3);
