@@ -31,6 +31,11 @@ public class AccountServiceTest {
     @Mock
     AccountRepository accountRepository;
 
+    /**
+     * Execute this code before begin unit test
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
@@ -63,6 +68,11 @@ public class AccountServiceTest {
 
     }
 
+    /**
+     * Test should be return accountDto
+     *
+     * @throws Exception
+     */
     @Test
     public void getAccountById() throws Exception {
 

@@ -36,6 +36,11 @@ public class HistoryServiceTest {
     @Mock
     HistoryRepository historyRepository;
 
+    /**
+     * Execute this code before begin unit test
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
@@ -73,6 +78,9 @@ public class HistoryServiceTest {
         when(historyRepository.findAllByAccountEntity_UserEntity(userEntity)).thenReturn(historyEntityList);
     }
 
+    /**
+     * Test should be return list of hisoryDto
+     */
     @Test
     public void getAllByAccountIdTest(){
 
@@ -84,6 +92,9 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test should be return false for to high transaction
+     */
     @Test
     public void allowGetTransactionTestShouldFalse() {
 
@@ -93,6 +104,9 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test should be return true accepted transaction
+     */
     @Test
     public void allowGetTransactionTestShouldTrue() {
 
@@ -102,6 +116,9 @@ public class HistoryServiceTest {
 
     }
 
+    /**
+     * Test should be return all history for specifique userDto
+     */
     @Test
     public void getAllByUserIdTest() {
 

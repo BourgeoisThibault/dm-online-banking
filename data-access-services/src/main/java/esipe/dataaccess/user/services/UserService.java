@@ -18,11 +18,19 @@ public class UserService implements IUserService {
 
 	private final UserRepository userRepository;
 
+	/**
+	 *
+	 * @param userRepository
+	 */
 	@Autowired
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@Override
 	public List<UserDto> getAll() {
 		return userRepository.findAll()
@@ -33,6 +41,12 @@ public class UserService implements IUserService {
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public UserDto getUserById(Long id) throws Exception {
 		UserEntity userEntity = userRepository.findOne(id);
@@ -43,6 +57,11 @@ public class UserService implements IUserService {
 		return mapper.map(userEntity, UserDto.class);
 	}
 
+	/**
+	 *
+	 * @param userDto
+	 * @return
+	 */
 	@Override
 	public UserDto create(UserDto userDto) {
 
@@ -51,11 +70,21 @@ public class UserService implements IUserService {
 		return mapper.map(userEntity, UserDto.class);
 	}
 
+	/**
+	 *
+	 * @param id
+	 */
 	@Override
 	public void delete(Long id) {
 		userRepository.delete(id);
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @param userDto
+	 * @throws Exception
+	 */
 	@Override
 	public void update(Long id, UserDto userDto) throws Exception {
 

@@ -20,6 +20,12 @@ public class UserController {
 
     private String PATH_ROOT = "users/";
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public ResponseEntity getUser(@PathVariable Long id) throws IOException {
         return RestManagement.getResponse(PATH_ROOT, id);

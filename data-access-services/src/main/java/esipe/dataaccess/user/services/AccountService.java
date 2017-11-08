@@ -30,6 +30,13 @@ public class AccountService implements IAccountService {
     private final UserService userService;
     private final AccountTypeRepository accountTypeRepository;
 
+    /**
+     *
+     * @param accountRepository
+     * @param historyService
+     * @param userService
+     * @param accountTypeRepository
+     */
     @Autowired
     public AccountService(AccountRepository accountRepository,
                           HistoryService historyService,
@@ -41,6 +48,12 @@ public class AccountService implements IAccountService {
         this.accountTypeRepository = accountTypeRepository;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @Override
     public List<AccountDto> getAllAccountOfUser(Long id) throws Exception {
 
@@ -62,6 +75,11 @@ public class AccountService implements IAccountService {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public AccountDto getAccountById(Long id) {
         AccountEntity accountEntity = accountRepository.findOne(id);
@@ -70,6 +88,12 @@ public class AccountService implements IAccountService {
         return accountDto;
     }
 
+    /**
+     *
+     * @param accountDto
+     * @return
+     * @throws Exception
+     */
     @Override
     public AccountDto create(AccountDto accountDto) throws Exception {
 
@@ -93,6 +117,11 @@ public class AccountService implements IAccountService {
         return newAccountDto;
     }
 
+    /**
+     *
+     * @param accountTransaction
+     * @throws Exception
+     */
     @Override
     public void updateAccount(AccountTransaction accountTransaction) throws Exception {
 
@@ -124,6 +153,11 @@ public class AccountService implements IAccountService {
         }
     }
 
+    /**
+     *
+     * @param accountDto
+     * @return
+     */
     private Boolean alreadyHaveAccount(AccountDto accountDto) {
 
         List<AccountEntity> accountEntityList = accountRepository.findAllByUserEntity(mapper.map(accountDto.getUserDto(), UserEntity.class));
@@ -136,6 +170,12 @@ public class AccountService implements IAccountService {
         return true;
     }
 
+    /**
+     *
+     * @param accountDto
+     * @return
+     * @throws Exception
+     */
     private Boolean toOldForAccount(AccountDto accountDto) throws Exception {
 
         try {

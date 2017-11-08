@@ -29,6 +29,12 @@ public class UserController {
 		this.historyService = historyService;
 	}
 
+	/**
+	 * Method for get information of one user
+	 *
+	 * @param id
+	 * @return JSON
+	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getOneUser(@PathVariable @Valid @Pattern(regexp = "[0-9]{1,}") Long id) {
 
@@ -41,6 +47,12 @@ public class UserController {
 
 	}
 
+	/**
+	 * Method for get history of specifque user
+	 *
+	 * @param id
+	 * @return JSON
+	 */
 	@RequestMapping(path = "/history/{id}", method = RequestMethod.GET)
 	public ResponseEntity getHistoryAccountOfUser(@PathVariable Long id) {
 
@@ -56,6 +68,10 @@ public class UserController {
 		}
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity getAllUser() {
 
@@ -65,11 +81,22 @@ public class UserController {
 			new ResponseEntity(userDtoList, HttpStatus.OK) : new ResponseEntity(HttpStatus.NO_CONTENT);
 	}
 
+	/**
+	 *
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
 		return new ResponseEntity<>(userService.create(user), HttpStatus.OK);
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity updateUser(@PathVariable Long id, @RequestBody UserDto user) {
 		try {

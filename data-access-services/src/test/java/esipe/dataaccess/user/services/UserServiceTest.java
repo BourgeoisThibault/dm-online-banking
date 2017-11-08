@@ -30,6 +30,11 @@ public class UserServiceTest {
     @Mock
     UserRepository userRepository;
 
+    /**
+     * Execute this code before begin unit test
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
@@ -56,6 +61,11 @@ public class UserServiceTest {
         when(userRepository.save(userEntity)).thenReturn(null);
     }
 
+    /**
+     * Test should be return list of userDto
+     *
+     * @throws Exception
+     */
     @Test
     public void getAllTest() throws Exception {
         List<UserDto> userDtoList = userService.getAll();
@@ -63,6 +73,11 @@ public class UserServiceTest {
         assertTrue(userDtoList.get(0).getPhone().equals("phone"));
     }
 
+    /**
+     * Test should be return userDto
+     *
+     * @throws Exception
+     */
     @Test
     public void getUserById() throws Exception {
         UserDto userDto = userService.getUserById(anyLong());
@@ -70,6 +85,11 @@ public class UserServiceTest {
         assertTrue(userDto.getPhone().equals("phone"));
     }
 
+    /**
+     * Test should be return user with same firstname and different phone
+     *
+     * @throws Exception
+     */
     @Test
     public void update() throws Exception {
 

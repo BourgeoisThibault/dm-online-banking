@@ -29,6 +29,12 @@ public class AccountController {
         this.historyService = historyService;
     }
 
+    /**
+     * Method for create new account
+     *
+     * @param accountDto
+     * @return JSON
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createAccount(@RequestBody AccountDto accountDto) {
         try {
@@ -39,6 +45,12 @@ public class AccountController {
         }
     }
 
+    /**
+     * Method for get all account for one specifique user
+     *
+     * @param id
+     * @return JSON
+     */
     @RequestMapping(path = "/user/{id}", method = RequestMethod.GET)
     public ResponseEntity getAllAccountOfUser(@PathVariable Long id) {
 
@@ -52,6 +64,12 @@ public class AccountController {
         }
     }
 
+    /**
+     * Method for get history of specifique account
+     *
+     * @param id
+     * @return JSON
+     */
     @RequestMapping(path = "/history/{id}", method = RequestMethod.GET)
     public ResponseEntity getHistoryOfOneAccount(@PathVariable Long id) {
 
@@ -64,6 +82,12 @@ public class AccountController {
         }
     }
 
+    /**
+     * Method for put transaction for update account and history transation
+     *
+     * @param accountTransaction
+     * @return JSON
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity update(@RequestBody AccountTransaction accountTransaction) {
         try {

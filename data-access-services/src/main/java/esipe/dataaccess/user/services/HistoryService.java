@@ -30,11 +30,20 @@ public class HistoryService implements IHistoryService {
 
     private final HistoryRepository historyRepository;
 
+    /**
+     *
+     * @param historyRepository
+     */
     @Autowired
     public HistoryService(HistoryRepository historyRepository) {
         this.historyRepository = historyRepository;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public List<HistoryDto> getAllByAccountId(Long id) {
         List<HistoryEntity> historyEntityList = historyRepository.findAllByAccountEntity_Id(id);
@@ -49,6 +58,11 @@ public class HistoryService implements IHistoryService {
         return historyDtoList;
     }
 
+    /**
+     *
+     * @param userDto
+     * @return
+     */
     @Override
     public List<HistoryDto> getAllByUserId(UserDto userDto) {
         List<HistoryEntity> historyEntityList = historyRepository.findAllByAccountEntity_UserEntity(mapper.map(userDto,UserEntity.class));
@@ -63,6 +77,10 @@ public class HistoryService implements IHistoryService {
         return historyDtoList;
     }
 
+    /**
+     *
+     * @param historyDto
+     */
     @Override
     public void create(HistoryDto historyDto) {
         HistoryEntity historyEntity = mapper.map(historyDto,HistoryEntity.class);
@@ -70,6 +88,12 @@ public class HistoryService implements IHistoryService {
         historyRepository.save(historyEntity);
     }
 
+    /**
+     *
+     * @param id
+     * @param amount
+     * @return
+     */
     @Override
     public Boolean allowGetTransaction(Long id, Double amount) {
 
