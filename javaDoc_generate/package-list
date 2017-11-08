@@ -1,0 +1,13 @@
+esipe
+esipe.aop
+esipe.client.configuration
+esipe.client.user.controllers
+esipe.clientmanagement.configuration
+esipe.clientmanagement.user.controllers
+esipe.dataaccess.configuration
+esipe.dataaccess.user.controllers
+esipe.dataaccess.user.entities
+esipe.dataaccess.user.repositories
+esipe.dataaccess.user.services
+esipe.models
+esipe.restutils
