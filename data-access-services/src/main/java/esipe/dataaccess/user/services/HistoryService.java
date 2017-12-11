@@ -108,6 +108,7 @@ public class HistoryService implements IHistoryService {
             calc += item.getAmount();
         }
 
+        //Gokan TODO: Tu peux simplifier ce bloc
         if((calc + amount) > 800) {
             return false;
         } else {
